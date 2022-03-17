@@ -24,4 +24,7 @@ public class Usuarios {
 
     @Getter @Setter @Column( name = "email")
     private String email;
+
+    @Getter @Setter @Column( name = "password")
+    private String password;
 }

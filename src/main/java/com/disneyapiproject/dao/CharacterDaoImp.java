@@ -27,6 +27,7 @@ public class CharacterDaoImp implements CharacterDao {
 
     public void saveCharacter(Personajes character) {
         entityManager.persist(character);
+
     }
 
 
