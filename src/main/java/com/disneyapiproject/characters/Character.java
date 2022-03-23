@@ -1,4 +1,4 @@
-package com.disneyapiproject.models;
+package com.disneyapiproject.characters;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,8 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "personajes")
-
-public class Personajes {
+public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,21 +17,19 @@ public class Personajes {
     private Long id;
 
     @Getter @Setter @Column( name = "imagen")
-    private String imagen;
+    private String image;
 
     @Getter @Setter @Column( name = "nombre")
-    private String nombre;
+    private String name;
 
     @Getter @Setter @Column( name = "edad")
-    private Integer edad;
+    private Integer age;
 
     @Getter @Setter @Column( name = "peso")
-    private Integer peso;
+    private Integer weight;
 
     @Getter @Setter @Column( name = "historia")
-    private String historia;
-
-
+    private String history;
 
 
 }
