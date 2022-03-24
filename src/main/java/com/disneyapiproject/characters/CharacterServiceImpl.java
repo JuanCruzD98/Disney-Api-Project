@@ -1,7 +1,7 @@
 package com.disneyapiproject.characters;
 
 import com.disneyapiproject.exceptions.ResourceNotFoundException;
-import com.disneyapiproject.models.Characters;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

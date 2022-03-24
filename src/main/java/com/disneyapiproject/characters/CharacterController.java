@@ -56,6 +56,8 @@ public class CharacterController {
 
     }
 
+    //Faltan Movie Join
+
 
 
 

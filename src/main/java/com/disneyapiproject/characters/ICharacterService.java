@@ -2,7 +2,7 @@ package com.disneyapiproject.characters;
 
 
 
-import com.disneyapiproject.models.Characters;
+
 
 import java.util.List;
 
