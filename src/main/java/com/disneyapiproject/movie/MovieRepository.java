@@ -8,9 +8,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     List<Movie> findByTitle(String title);
 
-   // List<Movie> findByGenresId(Long genreId);
-
     List<Movie> findAllByOrderByDateAsc();
 
     List<Movie> findAllByOrderByDateDesc();
+
+    List<Movie> findByGenresId(Long idGenre);
 }

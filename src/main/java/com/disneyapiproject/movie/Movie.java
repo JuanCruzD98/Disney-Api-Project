@@ -1,14 +1,17 @@
 package com.disneyapiproject.movie;
 
+import com.disneyapiproject.genre.Genre;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 
+import javax.persistence.*;
+
+import java.util.*;
+@Getter
+@Setter
 @Entity
-@Table(name = "peliculas")
+@Table
 public class Movie {
 
     @Id
@@ -23,9 +26,22 @@ public class Movie {
     @Getter @Setter @Column( name = "image")
     private String image;
 
-    @Getter @Setter @Column( name = "dateOfCreation")
+    @Getter @Setter @Column( name = "date")
     private Date date;
     @Getter @Setter @Column( name = "rating")
     private Integer rating;
 
+
+
+    @ManyToMany(mappedBy = "movies")
+    private List<Character> characters = new ArrayList<>();
+
+    @JoinTable(name = "movie_genre",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @ManyToMany
+    private List<Genre> genres = new ArrayList<>();
+
 }
+
+

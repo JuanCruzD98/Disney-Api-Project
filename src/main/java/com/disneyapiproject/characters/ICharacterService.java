@@ -15,6 +15,10 @@ public interface ICharacterService {
     void deleteCharacter(Long id);
     List<Character> findByName(String name);
     List <Character> findByAge(Integer age);
+    List<Character> findByMovieId(Long movieId);
+    public void addMovies(Long characterId, List<Long> moviesIds);
+    public void removeMovies(Long characterId, List<Long> moviesIds);
+
 
 
 }
