@@ -18,6 +18,8 @@ public class CharacterServiceImpl implements ICharacterService {
     private final MovieRepository movieRepository;
     private CharacterRepository characterRepository;
 
+
+
     @Override
     public List<Character> getAllCharacters() {
         return characterRepository.findAll();

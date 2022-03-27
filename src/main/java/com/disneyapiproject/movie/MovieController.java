@@ -7,6 +7,7 @@ import com.disneyapiproject.mapstruct.dto.MovieDto;
 import com.disneyapiproject.mapstruct.dto.MovieSlimDto;
 import com.disneyapiproject.mapstruct.mappers.MapStructMapper;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(value = "Movies")
 @RequestMapping(value = "api/movies")
 public class MovieController {
 

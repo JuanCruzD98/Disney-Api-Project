@@ -1,9 +1,11 @@
 package com.disneyapiproject.user;
 
+import com.disneyapiproject.emailsender.IEmailSenderService;
 import com.disneyapiproject.mapstruct.dto.UserDto;
 import com.disneyapiproject.security.CustomUserDetailsService;
 import com.disneyapiproject.security.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +25,8 @@ public class UserServiceImpl {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService customUserDetailsService;
-
+    @Autowired
+    private final IEmailSenderService emailService;
 
     private Authentication authenticate(UserDto user) {
 
@@ -47,7 +50,7 @@ public class UserServiceImpl {
 
 
     public boolean checkIfEmailIsAvailable(String email) {
-        return userRepository.emailExist(email);
+        return userRepository.existsByEmail(email);
     }
 
     public String logInUser(UserDto user) {
@@ -68,6 +71,10 @@ public class UserServiceImpl {
         User user = new User();
         user.setEmail(userToSave.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(userToSave.getPassword()));
+
+        if(user !=null){{emailService.sendWelcomeEmailTo(user.getEmail());}
+
+        }
 
         userRepository.save(user);
 

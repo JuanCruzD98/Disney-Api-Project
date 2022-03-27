@@ -13,7 +13,6 @@ public class GenreServiceImpl implements IGenreService {
 
     private GenreRepository genreRepository;
 
-    //Save
 
     public Genre saveGenre(Genre genre){
         return genreRepository.save(genre);
@@ -30,12 +29,11 @@ public class GenreServiceImpl implements IGenreService {
 
 
 
-    //Get
     public Genre getGenreById(Long id){
         return genreRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Genre", "Id", id));
     }
 
-    //Update
+
     public Genre updateGenre(Genre genre, Long id){
         //Check if movie already exist in DB
         Genre existingGenre = genreRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Genre", "Id", id));

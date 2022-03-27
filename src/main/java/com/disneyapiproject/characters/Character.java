@@ -5,41 +5,40 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table
+@Table(name = "characters")
 public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Getter @Setter @Column( name = "image")
+
+    @Column(name = "image")
     private String image;
 
-    @Getter @Setter @Column( name = "name")
+
+    @Column(name = "name")
     private String name;
 
-    @Getter @Setter @Column( name = "age")
+
+    @Column(name = "age")
     private Integer age;
 
-    @Getter @Setter @Column( name = "weight")
+    @Column(name = "weight")
     private Integer weight;
 
-    @Getter @Setter @Column( name = "history")
+    @Column(name = "history")
     private String history;
-    @JoinTable(name = "character_movie",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    @ManyToMany
-    private List<Movie> movies ;
 
+    @ManyToMany
+    @JoinTable(name = "character_movie",
+            joinColumns = @JoinColumn(name = "characters_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "movies_id",referencedColumnName = "id"))
+    private Set<Movie> movies = new HashSet<>();
 }

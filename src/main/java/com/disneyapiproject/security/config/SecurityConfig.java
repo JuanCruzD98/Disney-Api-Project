@@ -4,8 +4,10 @@ import com.disneyapiproject.security.CustomUserDetailsService;
 import com.disneyapiproject.security.JwtAuthenticationEntryPoint;
 import com.disneyapiproject.security.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,12 +22,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private  CustomUserDetailsService customUserDetailsService;
 
-    private final CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
+    public JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,18 +42,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(HttpSecurity security) throws Exception {
+    public void configure(HttpSecurity httpSecurity) throws Exception {
 
-        security.csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/auth/register", "/auth/login", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        security.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+       httpSecurity.csrf().disable()
+                .authorizeRequests().antMatchers("/api/*","auth/*" ).permitAll()
+                .anyRequest().authenticated()
+                .and().exceptionHandling()
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
+
+    @Autowired
+    public void setAttributes(CustomUserDetailsService userDetailsCustomService, @Lazy JwtAuthenticationFilter jwtAuthenticationFilter)
+    { this.customUserDetailsService = userDetailsCustomService; this.jwtAuthenticationFilter = jwtAuthenticationFilter; }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
