@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.*;
@@ -36,6 +37,7 @@ public class Movie {
     private String image;
 
     @Column( name = "date")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDateTime date;
     @Column( name = "rating")
     private Integer rating;

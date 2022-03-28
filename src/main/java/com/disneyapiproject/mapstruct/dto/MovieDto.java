@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +26,8 @@ public class MovieDto {
     private String image;
 
     @NotNull
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private LocalDateTime date;
     @NotNull
     private Integer rating;
 

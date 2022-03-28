@@ -2,11 +2,12 @@ package com.disneyapiproject.genre;
 
 import com.disneyapiproject.exceptions.ResourceNotFoundException;
 import com.disneyapiproject.movie.Movie;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Transactional
 @Service
 public class GenreServiceImpl implements IGenreService {

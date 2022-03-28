@@ -1,3 +1,4 @@
+
 package com.disneyapiproject.security.filter;
 
 import com.disneyapiproject.security.CustomUserDetailsService;
@@ -14,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,11 +25,10 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-   @Autowired
-   private JwtUtil jwtUtil;
 
-   @Autowired
-   private CustomUserDetailsService customUserDetailsService;
+    private final JwtUtil jwtUtil;
+
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

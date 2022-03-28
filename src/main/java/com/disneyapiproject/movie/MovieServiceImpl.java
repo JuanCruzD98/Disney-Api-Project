@@ -4,6 +4,7 @@ import com.disneyapiproject.characters.Character;
 import com.disneyapiproject.exceptions.ResourceNotFoundException;
 import com.disneyapiproject.genre.Genre;
 import com.disneyapiproject.genre.GenreRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Transactional
 @Service
 public class MovieServiceImpl implements IMovieService{

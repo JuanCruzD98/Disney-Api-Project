@@ -1,6 +1,5 @@
 package com.disneyapiproject.movie;
 
-import com.disneyapiproject.characters.Character;
 import com.disneyapiproject.mapstruct.dto.GenreSlimDto;
 import com.disneyapiproject.mapstruct.dto.ListOfLongDto;
 import com.disneyapiproject.mapstruct.dto.MovieDto;

@@ -5,8 +5,8 @@ import com.disneyapiproject.mapstruct.dto.CharacterSlimDto;
 import com.disneyapiproject.mapstruct.dto.ListOfLongDto;
 import com.disneyapiproject.mapstruct.dto.MovieSlimDto;
 import com.disneyapiproject.mapstruct.mappers.MapStructMapper;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Parameter;
+import lombok.AllArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestController
 @RequestMapping(value = "api/characters")
 public class CharacterController {
@@ -38,14 +38,14 @@ public class CharacterController {
         return new ResponseEntity<>(mapStructMapper.charactersToCharacterSlimDtos(characterServiceImpl.getAllCharacters()), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CharacterDto> getCharacterById(@PathVariable("id") Long id) {
 
         return new ResponseEntity<>(mapStructMapper.characterToCharacterDto(characterServiceImpl.getCharacterById(id)), HttpStatus.OK);
 
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<CharacterDto> updateCharacter(@Valid @RequestBody CharacterDto character, @PathVariable("id") Long id) {
 
         Character characterUpdated = characterServiceImpl.saveCharacter(mapStructMapper.updateCharacterFromDto(character, characterServiceImpl.getCharacterById(id)));
@@ -54,7 +54,7 @@ public class CharacterController {
 
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCharacterById(@PathVariable("id") Long id) {
 
         characterServiceImpl.deleteCharacter(id);
@@ -85,7 +85,7 @@ public class CharacterController {
 
     }
 
-    @GetMapping("{id}/movies")
+    @GetMapping("/{id}/movies")
     public ResponseEntity<List<MovieSlimDto>> getCharacterMovies(@PathVariable("id") Long characterId) {
 
         return new ResponseEntity<>(mapStructMapper.moviesToMovieSlimDtos(new ArrayList<>(characterServiceImpl.getCharacterById(characterId).getMovies())), HttpStatus.OK);
@@ -93,7 +93,7 @@ public class CharacterController {
 
     }
 
-    @PutMapping("{id}/movies")
+    @PutMapping("/{id}/movies")
     public ResponseEntity<?> addMoviesToCharacter(@Valid @RequestBody ListOfLongDto moviesIds, @PathVariable("id") Long characterId) {
 
         characterServiceImpl.addMovies(characterId, moviesIds.getList());

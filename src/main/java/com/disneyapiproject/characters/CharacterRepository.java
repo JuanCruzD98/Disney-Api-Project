@@ -1,5 +1,6 @@
 package com.disneyapiproject.characters;
 
+import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

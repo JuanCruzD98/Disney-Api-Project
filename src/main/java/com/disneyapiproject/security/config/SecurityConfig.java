@@ -1,7 +1,8 @@
+
 package com.disneyapiproject.security.config;
 
 import com.disneyapiproject.security.CustomUserDetailsService;
-import com.disneyapiproject.security.JwtAuthenticationEntryPoint;
+//import com.disneyapiproject.security.JwtAuthenticationEntryPoint;
 import com.disneyapiproject.security.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private  CustomUserDetailsService customUserDetailsService;
-
+/*
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-
+*/
     @Autowired
     public JwtAuthenticationFilter jwtAuthenticationFilter;
 
@@ -45,10 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
 
        httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/api/*","auth/*" ).permitAll()
-                .anyRequest().authenticated()
+                .authorizeRequests().antMatchers("/api/**","api/auth/**" ).permitAll()
+               .anyRequest().authenticated()
                 .and().exceptionHandling()
-                .and().sessionManagement()
+               .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

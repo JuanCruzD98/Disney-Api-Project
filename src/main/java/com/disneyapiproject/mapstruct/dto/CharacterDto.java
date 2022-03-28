@@ -14,16 +14,16 @@ import java.util.List;
 public class CharacterDto {
     @JsonProperty(access= JsonProperty.Access.READ_ONLY)
     private Long id;
-    @NotBlank
+
     private String image;
-    @NotBlank
+
     private String name;
-    @NotBlank
+
     @Min(0)
     private Integer age;
-    @NotBlank
+
     private Integer weight;
-    @NotBlank
+
     private String history;
 
     @JsonProperty(access= JsonProperty.Access.READ_ONLY)

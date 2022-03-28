@@ -1,9 +1,12 @@
+
 package com.disneyapiproject.user;
 
 import com.disneyapiproject.emailsender.IEmailSenderService;
 import com.disneyapiproject.mapstruct.dto.UserDto;
 import com.disneyapiproject.security.CustomUserDetailsService;
 import com.disneyapiproject.security.util.JwtUtil;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,8 +19,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class UserServiceImpl {
 
     private final UserRepository userRepository;
@@ -75,7 +79,6 @@ public class UserServiceImpl {
         if(user !=null){{emailService.sendWelcomeEmailTo(user.getEmail());}
 
         }
-
         userRepository.save(user);
 
     }
@@ -83,3 +86,4 @@ public class UserServiceImpl {
 
 
 }
+

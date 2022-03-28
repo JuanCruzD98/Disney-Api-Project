@@ -4,13 +4,14 @@ import com.disneyapiproject.exceptions.ResourceNotFoundException;
 
 import com.disneyapiproject.movie.Movie;
 import com.disneyapiproject.movie.MovieRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Transactional
 @Service
 public class CharacterServiceImpl implements ICharacterService {
