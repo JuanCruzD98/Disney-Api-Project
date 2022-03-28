@@ -40,19 +40,19 @@ public class MovieController {
 
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<MovieDto> getMovieById(@PathVariable("id") Long movieId){
        return new ResponseEntity<>(mapStructMapper.movieToMovieDto(movieServiceImpl.getMovieById(movieId)), HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<MovieDto> updateMovie(@PathVariable("id") Long id, @RequestBody MovieDto movie){
         Movie movieUpdated = movieServiceImpl.saveMovie(mapStructMapper.updateMovieFromDto(movie, movieServiceImpl.getMovieById(id)));
 
         return new ResponseEntity<>(mapStructMapper.movieToMovieDto(movieUpdated), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletemovie(@PathVariable("id") Long id){
         movieServiceImpl.deleteMovie(id);
         return new ResponseEntity<String>("Movie deleted succesfully", HttpStatus.OK);
@@ -77,7 +77,7 @@ public class MovieController {
 
     }
 
-    @DeleteMapping("{id}/genres")
+    @DeleteMapping("/{id}/genres")
     public ResponseEntity<?> removeGenresFromMovie(@Valid @RequestBody ListOfLongDto genresIds, @PathVariable("id") Long movieId) {
 
         movieServiceImpl.removeGenres(movieId, genresIds.getList());
@@ -87,14 +87,14 @@ public class MovieController {
     }
 
 
-    @GetMapping("{id}/genres")
+    @GetMapping("/{id}/genres")
     public ResponseEntity<List<GenreSlimDto>> getMovieGenres(@PathVariable("id") Long movieId) {
 
         return new ResponseEntity<>(mapStructMapper.genresToGenreSlimDtos(new ArrayList<>(movieServiceImpl.getGenres(movieId))), HttpStatus.OK);
 
     }
 
-    @PutMapping("{id}/genres")
+    @PutMapping("/{id}/genres")
     public ResponseEntity<?> addGenresToMovie(@Valid @RequestBody ListOfLongDto genresIds, @PathVariable("id") Long movieId) {
 
         movieServiceImpl.addGenres(movieId, genresIds.getList());
