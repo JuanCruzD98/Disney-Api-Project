@@ -7,7 +7,7 @@ El challenge consiste en crear una REST API del mundo de disney, permitiendo cre
 3. Ejecute estos comandos: mvn clean install y luego mvn spring-boot:run
 4. Puede interactuar con los endpoints ingresando a su cuenta de Postman e importando el archivo Json dentro de la carpeta postman
 
-##Este proyecto está construido con 🤖 
+## Este proyecto está construido con 🤖 
 - Java 11
 - Spring Boot
 - Spring Security
