@@ -37,7 +37,7 @@ public class Movie {
     private String image;
 
     @Column( name = "date")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime date;
     @Column( name = "rating")
     private Integer rating;

@@ -5,8 +5,6 @@ import com.disneyapiproject.emailsender.IEmailSenderService;
 import com.disneyapiproject.mapstruct.dto.UserDto;
 import com.disneyapiproject.security.CustomUserDetailsService;
 import com.disneyapiproject.security.util.JwtUtil;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

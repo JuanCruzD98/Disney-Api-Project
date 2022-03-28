@@ -2,7 +2,6 @@
 package com.disneyapiproject.security.config;
 
 import com.disneyapiproject.security.CustomUserDetailsService;
-//import com.disneyapiproject.security.JwtAuthenticationEntryPoint;
 import com.disneyapiproject.security.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private  CustomUserDetailsService customUserDetailsService;
-/*
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-*/
+
     @Autowired
     public JwtAuthenticationFilter jwtAuthenticationFilter;
 

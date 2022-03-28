@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(value = "Movies")
 @RequestMapping(value = "api/movies")
 public class MovieController {
 
@@ -27,7 +26,7 @@ public class MovieController {
     @Autowired
     private MovieServiceImpl movieServiceImpl;
 
-    //Guardar
+
     @PostMapping
     private ResponseEntity<MovieDto> saveMovie(@RequestBody MovieDto movie){
         Movie movieCreated = movieServiceImpl.saveMovie(mapStructMapper.movieDtoToMovie(movie));
